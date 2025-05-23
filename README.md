@@ -124,18 +124,7 @@ make run-nockchain
 
 #### 方法 2: 使用 PM2 集群运行（推荐生产环境）
 
-首先安装Node.js和PM2：
-
-```bash
-# 安装Node.js LTS版本
-curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
-sudo apt-get install -y nodejs
-
-# 安装PM2
-npm install -g pm2
-```
-
-然后启动集群：
+Node.js和PM2已由安装脚本自动安装，直接启动集群：
 
 ```bash
 # 创建日志目录

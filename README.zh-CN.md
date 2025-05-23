@@ -198,17 +198,7 @@ RUST_BACKTRACE=1 cargo run --release --bin nockchain -- \
 
 #### 方法 2：PM2集群模式（推荐生产环境）
 
-**安装PM2进程管理器：**
-
-```bash
-# 通过npm安装PM2
-curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
-sudo apt-get install -y nodejs
-npm install -g pm2
-
-# 验证安装
-pm2 --version
-```
+**Node.js和PM2已由安装脚本自动安装，直接开始集群配置：**
 
 **集群配置管理：**
 
@@ -248,13 +238,13 @@ pm2 startup
 - **主节点** (`nockchain-main`)
   - 处理完整的区块链同步
   - 维护网络连接状态
-  - 内存限制：2GB
+  - 内存限制：12GB (64GB VPS优化)
   - Socket: `/tmp/nockchain-main.socket`
 
 - **挖矿节点** (`nockchain-miner-1,2,3`)
   - 专注于挖矿计算
   - 轻量级操作模式
-  - 内存限制：1GB
+  - 内存限制：10GB 每个 (64GB VPS优化)
   - Socket: `/tmp/nockchain-miner-{N}.socket`
 
 #### 🔧 高级配置选项
@@ -267,11 +257,12 @@ pm2 startup
 // 修改挖矿节点数量
 const MINER_COUNT = 5; // 增加到5个挖矿节点
 
-// 调整内存限制
-max_memory_restart: '4G' // 主节点使用4GB内存
+// 调整内存限制 (64GB VPS配置)
+const MAIN_NODE_MEMORY = '16G'; // 主节点使用16GB内存
+const MINER_NODE_MEMORY = '12G'; // 挖矿节点使用12GB内存
 
 // 修改日志级别
-RUST_LOG: 'debug,nockchain=trace' // 更详细的日志输出
+RUST_LOG_MAIN: 'debug,nockchain=trace' // 更详细的日志输出
 ```
 
 ---
