@@ -38,15 +38,22 @@ Nockchain仍处于早期阶段，通过运行节点或参与挖矿，您正在�
 在新的Ubuntu VPS上运行以下命令完成所有安装：
 
 ```bash
-bash <(curl -s https://raw.githubusercontent.com/wenqingyu/nockchain-mining-script/main/setup-nockchain.sh)
+bash <(curl -s https://raw.githubusercontent.com/wenqingyu/nockchain-mining-script/v2/setup-nockchain.sh)
 ```
 
 这个脚本将会：
 1. 安装系统依赖
 2. 安装Rust (stable)
-3. 克隆官方Nockchain仓库
-4. 复制.env配置文件
-5. 构建并安装所有必要组件 (hoonc, wallet, node)
+3. 克隆官方Nockchain仓库到 `~/nockchain`
+4. 下载所有必要的配置文件到 `~/nockchain` 目录：
+   - `env.template` - 环境变量模板
+   - `ecosystem.config.js` - PM2集群配置
+   - `check-blockchain.sh` - 区块链状态检查脚本
+5. 创建默认的 `.env` 配置文件
+6. 构建并安装所有必要组件 (hoonc, wallet, node)
+7. 创建日志目录
+
+**⚠️ 重要：安装完成后，您的工作目录将是 `~/nockchain`，所有后续操作都在该目录中进行。**
 
 ---
 

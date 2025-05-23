@@ -39,7 +39,7 @@
 在全新的Ubuntu服务器上执行以下一键安装命令：
 
 ```bash
-bash <(curl -s https://raw.githubusercontent.com/wenqingyu/nockchain-mining-script/main/setup-nockchain.sh)
+bash <(curl -s https://raw.githubusercontent.com/wenqingyu/nockchain-mining-script/v2/setup-nockchain.sh)
 ```
 
 **安装过程包括：**
@@ -56,19 +56,26 @@ bash <(curl -s https://raw.githubusercontent.com/wenqingyu/nockchain-mining-scri
    - 设置环境变量
 
 3. **Nockchain 源码获取**
-   - 从官方仓库克隆最新代码
+   - 从官方仓库克隆最新代码到 `~/nockchain`
    - 检出稳定分支
    - 初始化子模块
 
-4. **核心组件构建**
+4. **配置文件下载**
+   - 下载 `env.template` 环境变量模板
+   - 下载 `ecosystem.config.js` PM2集群配置
+   - 下载 `check-blockchain.sh` 区块链检查脚本
+   - 创建默认的 `.env` 配置文件
+
+5. **核心组件构建**
    - 编译Hoon编译器 (hoonc)
    - 构建区块链节点 (nockchain)
    - 编译钱包工具 (nockchain-wallet)
 
-5. **配置文件初始化**
-   - 复制默认配置模板
-   - 设置网络参数
-   - 准备日志目录
+6. **环境准备**
+   - 创建日志目录
+   - 设置文件权限
+
+**⚠️ 重要提醒：安装完成后，您的工作目录将是 `~/nockchain`，所有配置文件和后续操作都在该目录中进行。**
 
 #### 🔍 安装验证
 

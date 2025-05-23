@@ -16,10 +16,17 @@
 
 ```bash
 # 一键安装所有组件
-bash <(curl -s https://raw.githubusercontent.com/wenqingyu/nockchain-mining-script/main/setup-nockchain.sh)
+bash <(curl -s https://raw.githubusercontent.com/wenqingyu/nockchain-mining-script/v2/setup-nockchain.sh)
 
-# 进入nockchain目录
+# 安装脚本会自动：
+# - 安装系统依赖和Rust
+# - 克隆官方Nockchain仓库到 ~/nockchain
+# - 下载所有配置文件到 ~/nockchain 目录
+# - 构建所有必要组件
+
+# 安装完成后，确认您在正确的目录：
 cd ~/nockchain
+pwd  # 应显示: /home/your-username/nockchain
 ```
 
 ### 步骤2：生成钱包和配置
