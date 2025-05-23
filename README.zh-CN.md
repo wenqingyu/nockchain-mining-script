@@ -55,23 +55,29 @@ bash <(curl -s https://raw.githubusercontent.com/wenqingyu/nockchain-mining-scri
    - 配置cargo包管理器
    - 设置环境变量
 
-3. **Nockchain 源码获取**
+3. **Node.js 环境安装**
+   - 安装Node.js LTS版本
+   - 安装PM2进程管理器
+   - 配置npm全局包环境
+
+4. **Nockchain 源码获取**
    - 从官方仓库克隆最新代码到 `~/nockchain`
    - 检出稳定分支
    - 初始化子模块
 
-4. **配置文件下载**
+5. **配置文件下载**
    - 下载 `env.template` 环境变量模板
    - 下载 `ecosystem.config.js` PM2集群配置
    - 下载 `check-blockchain.sh` 区块链检查脚本
+   - 安装Node.js依赖（dotenv等）
    - 创建默认的 `.env` 配置文件
 
-5. **核心组件构建**
+6. **核心组件构建**
    - 编译Hoon编译器 (hoonc)
    - 构建区块链节点 (nockchain)
    - 编译钱包工具 (nockchain-wallet)
 
-6. **环境准备**
+7. **环境准备**
    - 创建日志目录
    - 设置文件权限
 

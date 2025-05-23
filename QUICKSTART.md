@@ -54,10 +54,7 @@ make run-nockchain
 
 #### 方式B：PM2集群模式（生产环境推荐）
 ```bash
-# 安装Node.js和PM2
-curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
-sudo apt-get install -y nodejs
-npm install -g pm2
+# Node.js和PM2已由安装脚本自动安装
 
 # 创建日志目录并启动集群
 mkdir -p logs

@@ -17,13 +17,22 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 source "$HOME/.cargo/env"
 rustup default stable
 
-echo "📦 Step 3: Cloning Nockchain repository..."
+echo "📦 Step 3: Installing Node.js and PM2..."
+# 安装Node.js LTS版本
+curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
+sudo apt-get install -y nodejs
+
+# 安装PM2和必要的npm包
+npm install -g pm2
+echo "✅ Installed Node.js and PM2"
+
+echo "📦 Step 4: Cloning Nockchain repository..."
 cd ~
 rm -rf nockchain
 git clone https://github.com/zorp-corp/nockchain
 cd nockchain
 
-echo "⚙️ Step 4: Downloading configuration files..."
+echo "⚙️ Step 5: Downloading configuration files..."
 # 下载env模板文件
 curl -sSL "${REPO_URL}/env.template" -o env.template
 echo "✅ Downloaded env.template"
@@ -40,18 +49,23 @@ echo "✅ Downloaded check-blockchain.sh"
 # 下载Makefile（如果需要额外的构建规则）
 curl -sSL "${REPO_URL}/Makefile" -o Makefile.mining 2>/dev/null || echo "⚠️  Makefile.mining not found (optional)"
 
-echo "📝 Step 5: Setting up environment configuration..."
+echo "📝 Step 6: Setting up environment configuration..."
 # 复制env模板作为默认配置
 cp env.template .env
 echo "✅ Created .env from template"
 
-echo "🔨 Step 6: Building components..."
+# 安装PM2配置所需的npm包
+npm init -y > /dev/null 2>&1
+npm install dotenv
+echo "✅ Installed dotenv for PM2 configuration"
+
+echo "🔨 Step 7: Building components..."
 make install-hoonc
 make build  
 make install-nockchain-wallet
 make install-nockchain
 
-echo "📂 Step 7: Creating logs directory..."
+echo "📂 Step 8: Creating logs directory..."
 mkdir -p logs
 
 echo ""
@@ -71,6 +85,7 @@ echo "- env.template: Configuration template"
 echo "- ecosystem.config.js: PM2 cluster configuration"
 echo "- check-blockchain.sh: Blockchain status checker"
 echo "- logs/: Log directory"
+echo "- package.json & node_modules/: Node.js dependencies"
 echo ""
 echo "🔍 Check blockchain status: ./check-blockchain.sh"
 echo "📖 For detailed instructions, visit:"

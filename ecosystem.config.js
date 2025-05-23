@@ -1,4 +1,9 @@
-require('dotenv').config();
+// 尝试加载dotenv，如果失败则继续使用环境变量
+try {
+    require('dotenv').config();
+} catch (e) {
+    console.log('dotenv not found, using environment variables directly');
+}
 
 /**
  * PM2集群配置文件 - Nockchain挖矿节点
